@@ -48,10 +48,10 @@ function setup() {
   
 
   //ball holder with slings
-  ball = Bodies.circle(50,200,20);
-  World.add(world,ball);
+  polygon = Bodies.circle(50,200,20);
+  World.add(world,polygon);
 
-  slingShot = new Slingshot(this.ball,{x:100,y:200});
+  slingShot = new Slingshot(this.polygon,{x:100,y:200});
 	Engine.run(engine);
   
 }
@@ -62,7 +62,9 @@ function draw() {
  
 	textSize(20);
 	fill("lightyellow");
-	text("Drag the Polygon with mouse and Release it, hit the blocks",100,30);
+  text("Drag the Polygon with mouse and Release it, hit the blocks",100,30);
+  textSize(10);
+  text("Press Space to get a second Chance to Play!!",650 ,350);
   
 	ground.display();
   stand1.display();
@@ -102,13 +104,18 @@ function draw() {
 
 	fill("gold");
 	imageMode(CENTER)
-	image(polygon_img ,ball.position.x,ball.position.y,40,40);
+	image(polygon_img ,polygon.position.x,polygon.position.y,40,40);
   
 	slingShot.display();
   }
   function mouseDragged(){
-	Matter.Body.setPosition(this.ball,{x:mouseX,y:mouseY});
+	Matter.Body.setPosition(this.polygon,{x:mouseX,y:mouseY});
   }
   function mouseReleased(){
 	slingShot.fly();
+  }
+  function keyPressed(){
+    if(keyCode === 32){
+        slingShot.attach(this.polygon);
+    }
   }

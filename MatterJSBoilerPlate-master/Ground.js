@@ -11,7 +11,7 @@ class Ground{
     display(){
         noStroke();
         push();
-        fill(188,67,67);
+        fill(86,18,6);
         rectMode(CENTER);
         rect(this.ground.position.x,this.ground.position.y,900,20);
         pop();
